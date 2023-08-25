@@ -1,3 +1,18 @@
+:20230822.v1
+-------------------
+- Released image to mitigate vulnerabilities.
+
+:20230808.v1
+-------------------
+- Upgraded cryptography to 41.0.3
+
+:20230727.v1
+-------------------
+- Upgraded cryptography to 41.0.2
+
+:20230628.v1
+-------------------
+-  [CVE-2023-2602](https://ubuntu.com/security/notices/USN-6166-1)
 
 :20230620.v1
 -------------------

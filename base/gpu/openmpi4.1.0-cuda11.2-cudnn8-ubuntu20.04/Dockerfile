@@ -33,6 +33,7 @@ RUN apt-get update && \
     libibverbs1 \
     libmthca1 \
     libdapl2 \
+    libtiff5 \
     dapl2-utils \
     openssh-client \
     openssh-server \
@@ -127,7 +128,7 @@ RUN apt-get update && \
     fuse && \
     apt-get clean -y && \
     rm -rf /var/lib/apt/lists/*   
-    
+
 # Inference
 # Copy logging utilities, nginx and rsyslog configuration files, IOT server binary, etc.
 COPY --from=inferencing-assets /artifacts /var/
@@ -148,7 +149,7 @@ RUN wget -qO /tmp/miniconda.sh https://repo.anaconda.com/miniconda/Miniconda3-${
     bash /tmp/miniconda.sh -bf -p /opt/miniconda && \
     conda clean -ay && \
     conda install conda=${CONDA_PACKAGE} -y && \
-    conda install wheel=0.38.1 setuptools=65.5.1 cryptography=41.0.0 requests=2.31.0 -c conda-forge -y && \
+    conda install wheel=0.38.1 setuptools=65.5.1 cryptography=41.0.3 requests=2.31.0 -c conda-forge -y && \
     rm -rf /opt/miniconda/pkgs && \
     rm /tmp/miniconda.sh && \
     find / -type d -name __pycache__ | xargs rm -rf
@@ -208,7 +209,6 @@ RUN cd /tmp && \
     ./configure --prefix=/usr/local/nccl-rdma-sharp-plugins --with-cuda=/usr/local/cuda --without-ucx && \
     make && \
     make install
-
 
 # set env var to find nccl rdma plugins inside this container
 ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/nccl-rdma-sharp-plugins/lib
